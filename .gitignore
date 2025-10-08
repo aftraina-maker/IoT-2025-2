@@ -1,0 +1,33 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDE/Editor
+.vscode/
+.idea/
+*.code-workspace
+
+# Node / web
+node_modules/
+dist/
+build/
+.env
+.env.*
+.npmrc
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Arduino/PlatformIO
+.pio/
+*.elf
+*.bin
+
+# Logs
+*.log
+
+# Draw.io exports temporários
+*.bkp
+*.bak
