@@ -5,14 +5,14 @@
 
 > Este repositório segue o *template oficial* da disciplina. Preencha os arquivos indicados em cada marco e submeta via Pull Request (PR).
 
-## ⚡ Guia Rápido
+##   Guia Rápido
 1. Crie uma branch por entrega (ex.: `feat/M1-definicao`).  
 2. Edite os arquivos em `/docs` conforme o marco.  
 3. Faça commits pequenos e objetivos.  
 4. Abra um **PR** para `main` com o *milestone* correto (M1…M9) e o label `entrega`.  
 5. Após merge dos marcos importantes, crie a tag correspondente (ex.: `vM1`, `v1.0`).
 
-## 🗂 Estrutura sugerida
+##   Estrutura sugerida
 ```
 /docs
   /01-definicao/definicao-projeto.md
@@ -36,7 +36,7 @@
   pitch.md
 ```
 
-## 🗓️ Cronograma 2025 — 2º semestre
+##   Cronograma 2025 — 2º semestre
 | Marco | Nome | Prazos |
 |---|---|---|
 | M1 | Definição do Projeto | **20/08** (1ª versão) e **27/08** (revisão) |
@@ -49,7 +49,7 @@
 | M8 | Documentação Técnica | **05–19/11** |
 | M9 | Apresentação Final | **20/11** e **03/12** |
 
-## ✅ Status dos marcos
+##   Status dos marcos
 - M1: ☐ aberto / ☐ entregue — PR: `<link>`  
 - M2: ☐ aberto / ☐ entregue — PR: `<link>`  
 - M3: ☐ aberto / ☐ entregue — PR: `<link>`  
@@ -60,7 +60,7 @@
 - M8: ☐ docs completas — PR: `<link>`  
 - M9: ☐ tag `v1.0` criada — Release: `<link>`
 
-## 🧭 Como executar (exemplo)
+##   Como executar (exemplo)
 - **Firmware:** `/firmware` (ex.: ESP32/Arduino).  
 - **Aplicação/Back-end:** `/software`.  
 - **Dashboard/App:** `/software/dashboard`.  
