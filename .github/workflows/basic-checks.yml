@@ -1,0 +1,22 @@
+name: Basic checks
+
+on:
+  pull_request:
+  push:
+    branches: [ main, dev ]
+
+jobs:
+  whitespace-and-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify required files exist
+        run: |
+          test -f README.md
+          test -f LICENSE
+          test -f docs/01-definicao/definicao-projeto.md
+          test -f docs/02-requisitos/requisitos-tecnologias.md
+          test -f tests/plano-testes.md
+      - name: Fail on trailing whitespace
+        run: |
+          ! (git ls-files | xargs -I{{}} bash -c "grep -nR $' \r\?$' {{}} && exit 1" )
