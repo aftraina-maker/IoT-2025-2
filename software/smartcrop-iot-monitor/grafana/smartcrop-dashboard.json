@@ -1,0 +1,95 @@
+{
+  "id": null,
+  "title": "SmartCrop IoT – Monitoramento de Pragas",
+  "tags": ["smartcrop", "iot", "bebedouro"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "5s",
+  "style": "dark",
+  "panels": [
+    {
+      "type": "geomap",
+      "title": "Mapa de Armadilhas – Zona Rural de Bebedouro/SP",
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 18 },
+      "datasource": { "type": "marcusolsson-json-datasource", "uid": "SmartCrop API" },
+      "targets": [
+        {
+          "method": "GET",
+          "urlPath": "/api/dados",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "basemap": {
+          "type": "osm-standard"
+        },
+        "view": {
+          "lat": -20.95,
+          "lon": -48.53,
+          "zoom": 12
+        },
+        "layers": [
+          {
+            "type": "markers",
+            "location": {
+              "mode": "coords",
+              "latitudeField": "latitude",
+              "longitudeField": "longitude"
+            },
+            "size": {
+              "field": "contagem",
+              "mode": "linear",
+              "min": 5,
+              "max": 40
+            },
+            "color": {
+              "mode": "field",
+              "field": "tipo_praga",
+              "fixedColor": "red"
+            },
+            "tooltip": {
+              "mode": "fields",
+              "fields": ["id_armadilha", "tipo_praga", "contagem", "timestamp"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Evolução da Contagem por Tipo de Praga",
+      "gridPos": { "x": 0, "y": 18, "w": 24, "h": 10 },
+      "datasource": { "type": "marcusolsson-json-datasource", "uid": "SmartCrop API" },
+      "targets": [
+        {
+          "method": "GET",
+          "urlPath": "/api/dados",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": { "mode": "palette-classic" },
+          "custom": { "drawStyle": "line", "fillOpacity": 25 }
+        }
+      },
+      "options": {
+        "legend": { "displayMode": "table", "placement": "bottom" },
+        "tooltip": { "mode": "multi" }
+      },
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {}
+        }
+      ]
+    }
+  ],
+  "templating": { "list": [] },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  }
+}

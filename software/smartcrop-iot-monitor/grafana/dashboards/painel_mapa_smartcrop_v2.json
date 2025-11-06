@@ -1,0 +1,100 @@
+{
+  "id": null,
+  "title": "Mapa Inteligente - SmartCrop IoT (v2)",
+  "tags": ["iot", "smartcrop", "agricultura", "pragas"],
+  "timezone": "browser",
+  "schemaVersion": 37,
+  "version": 2,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "geomap",
+      "title": "Distribuição de Pragas - Armadilhas IoT",
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "smartcrop-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "method": "GET",
+          "urlPath": "/dados",
+          "queryParams": "{}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "scale": "linear"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 30 },
+              { "color": "red", "value": 60 }
+            ]
+          }
+        }
+      },
+      "options": {
+        "basemap": {
+          "type": "carto-light"
+        },
+        "view": {
+          "lat": -20.95,
+          "lon": -48.48,
+          "zoom": 11
+        },
+        "layers": [
+          {
+            "type": "markers",
+            "name": "Armadilhas IoT",
+            "config": {
+              "size": { "field": "contagem", "fixed": 6 },
+              "color": { "field": "tipo_praga" },
+              "text": { "field": "id_armadilha" },
+              "tooltip": {
+                "fields": [
+                  "tipo_praga",
+                  "contagem",
+                  "id_armadilha",
+                  "timestamp"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "type": "query",
+        "name": "Praga",
+        "label": "Filtrar por tipo de praga",
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "smartcrop-api"
+        },
+        "query": "/dados",
+        "refresh": 1,
+        "regex": "/\"tipo_praga\":\"([^\"]+)\"/g",
+        "multi": true,
+        "includeAll": true,
+        "allValue": ".*",
+        "sort": 1
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "annotations": { "list": [] }
+}

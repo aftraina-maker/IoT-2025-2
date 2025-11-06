@@ -1,0 +1,103 @@
+{
+  "type": "geomap",
+  "title": "Distribuição de Pragas - Armadilhas IoT (Corrigido)",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "h": 14,
+    "w": 24
+  },
+  "fieldConfig": {
+    "defaults": {
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          { "color": "green", "value": null },
+          { "color": "orange", "value": 30 },
+          { "color": "red", "value": 60 }
+        ]
+      },
+      "custom": {
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        }
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "12.2.1",
+  "targets": [
+    {
+      "refId": "A",
+      "urlPath": "/query",
+      "method": "POST",
+      "body": {},
+      "payload": {}
+    }
+  ],
+  "datasource": {
+    "type": "marcusolsson-json-datasource"
+  },
+  "options": {
+    "view": {
+      "id": "zero",
+      "lat": -20.95,
+      "lon": -48.48,
+      "zoom": 11,
+      "noRepeat": false
+    },
+    "basemap": {
+      "type": "carto-light"
+    },
+    "controls": {
+      "showZoom": true,
+      "mouseWheelZoom": true,
+      "showAttribution": true,
+      "showScale": false,
+      "showMeasure": false,
+      "showDebug": false
+    },
+    "tooltip": {
+      "mode": "details"
+    },
+    "layers": [
+      {
+        "type": "markers",
+        "name": "Armadilhas IoT",
+        "config": {
+          "location": {
+            "mode": "coordinates",
+            "latitudeField": "latitude",
+            "longitudeField": "longitude"
+          },
+          "color": {
+            "mode": "byField",
+            "field": "tipo_praga"
+          },
+          "size": {
+            "mode": "byField",
+            "field": "contagem",
+            "fixed": 6
+          },
+          "text": {
+            "field": "id_armadilha"
+          },
+          "tooltip": {
+            "fields": [
+              "id_armadilha",
+              "tipo_praga",
+              "contagem",
+              "timestamp"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

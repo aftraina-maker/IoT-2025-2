@@ -1,0 +1,87 @@
+{
+  "id": null,
+  "uid": "smartcrop-iot",
+  "title": "SmartCrop IoT - Monitoramento de Pragas",
+  "tags": ["IoT", "SmartCrop", "Pragas"],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "30s",
+  "style": "dark",
+  "panels": [
+    {
+      "id": 1,
+      "type": "grafana-worldmap-panel",
+      "title": "Mapa das Armadilhas IoT",
+      "description": "Visualização das armadilhas de pragas monitoradas pelo sistema IoT.",
+      "datasource": "SmartCrop API",
+      "targets": [
+        {
+          "refId": "A",
+          "jsonPath": "$[*]",
+          "fields": [
+            { "name": "latitude", "jsonPath": "$.latitude" },
+            { "name": "longitude", "jsonPath": "$.longitude" },
+            { "name": "tipo_praga", "jsonPath": "$.tipo_praga" },
+            { "name": "contagem", "jsonPath": "$.contagem" },
+            { "name": "id_armadilha", "jsonPath": "$.id_armadilha" }
+          ]
+        }
+      ],
+      "options": {
+        "mapCenterLatitude": -20.94,
+        "mapCenterLongitude": -48.48,
+        "mapZoom": 12,
+        "circleMaxSize": 30,
+        "circleMinSize": 4,
+        "colors": ["green", "yellow", "red"],
+        "showLegend": true,
+        "thresholds": [20, 50],
+        "locationData": "table"
+      },
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 20 },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds",
+            "seriesBy": "last"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 20 },
+              { "color": "red", "value": 50 }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    }
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": ["10s", "30s", "1m", "5m", "15m"]
+  },
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Anotações padrão",
+        "type": "dashboard"
+      }
+    ]
+  }
+}

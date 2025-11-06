@@ -1,0 +1,13 @@
+import requests
+
+url = "http://127.0.0.1:5000/api/dados"
+data = {
+    "id_armadilha": "ARM-001",
+    "tipo_praga": "Pulgão",
+    "contagem": 12,
+    "latitude": -20.95,
+    "longitude": -48.48
+}
+
+r = requests.post(url, json=data)
+print(r.status_code, r.json())

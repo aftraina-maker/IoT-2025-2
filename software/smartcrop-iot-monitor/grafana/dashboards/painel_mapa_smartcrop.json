@@ -1,0 +1,97 @@
+{
+  "id": null,
+  "title": "Mapa de Monitoramento de Pragas - SmartCrop IoT",
+  "tags": ["iot", "smartcrop", "agricultura", "pragas"],
+  "timezone": "browser",
+  "schemaVersion": 37,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "geomap",
+      "title": "Armadilhas IoT - Monitoramento de Pragas",
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "smartcrop-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "method": "GET",
+          "urlPath": "/dados",
+          "queryParams": "{}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "scale": "linear",
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 30 },
+              { "color": "red", "value": 60 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "basemap": {
+          "type": "default"
+        },
+        "view": {
+          "lat": -20.95,
+          "lon": -48.48,
+          "zoom": 11
+        },
+        "layers": [
+          {
+            "type": "markers",
+            "name": "Armadilhas",
+            "config": {
+              "size": {
+                "field": "contagem",
+                "fixed": 6
+              },
+              "color": {
+                "field": "tipo_praga"
+              },
+              "text": {
+                "field": "id_armadilha"
+              },
+              "tooltip": {
+                "fields": [
+                  "tipo_praga",
+                  "contagem",
+                  "id_armadilha",
+                  "timestamp"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "annotations": {
+    "list": []
+  }
+}

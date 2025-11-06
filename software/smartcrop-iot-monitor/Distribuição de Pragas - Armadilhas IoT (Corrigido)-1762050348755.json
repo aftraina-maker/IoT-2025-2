@@ -1,0 +1,244 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 7,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "P7BA7BC1472643D6E"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 79.9999
+              },
+              {
+                "color": "#EAB839",
+                "value": 89.9999
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 99.9999
+              },
+              {
+                "color": "#EF843C",
+                "value": 109.9998
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Praga"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "noRepeat": false,
+          "type": "osm-standard"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "Praga ",
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.6,
+                "rotation": {
+                  "field": "Contagem",
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "field": "Praga ",
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "build/img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "text": {
+                  "field": "Praga ",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "layer-tooltip": true,
+            "location": {
+              "latitude": "Latitude",
+              "longitude": "Longitude",
+              "mode": "coords"
+            },
+            "name": "Layer 1",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "coords",
+          "lat": -20.95,
+          "lon": -48.53,
+          "noRepeat": false,
+          "shared": false,
+          "zoom": 11.99
+        }
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "P7BA7BC1472643D6E"
+          },
+          "fields": [
+            {
+              "jsonPath": "$[*].timestamp",
+              "language": "jsonpath",
+              "name": "Data",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$[*].contagem",
+              "language": "jsonpath",
+              "name": "Contagem",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$[*].tipo_praga",
+              "language": "jsonpath",
+              "name": "Praga",
+              "type": "string"
+            },
+            {
+              "jsonPath": "$[*].latitude",
+              "language": "jsonpath",
+              "name": "Latitude",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$[*].longitude",
+              "language": "jsonpath",
+              "name": "Longitude",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$[*].tipo_praga",
+              "language": "jsonpath",
+              "name": "Praga ",
+              "type": "string"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/dados"
+        }
+      ],
+      "title": "New panel",
+      "type": "geomap"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Distribuição de Pragas - Armadilhas IoT (Corrigido)",
+  "uid": "4b8315dd-2e78-422c-94c3-89ee5a6860c4",
+  "version": 4
+}

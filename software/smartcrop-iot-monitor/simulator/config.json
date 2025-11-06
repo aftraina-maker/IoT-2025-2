@@ -1,0 +1,7 @@
+{
+  "api_url": "http://api:5000/api/dados",
+  "intervalo_envio_segundos": 3,
+  "armadilhas": ["ARM-001", "ARM-002", "ARM-003", "ARM-004"],
+  "latitude_base": -20.950,
+  "longitude_base": -48.530
+}

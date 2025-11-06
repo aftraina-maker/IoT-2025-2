@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./api
+    container_name: iot-flask-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./api:/app
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/firebase_key.json
+    networks:
+      - smartcrop-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/plugins:/var/lib/grafana/plugins
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    restart: always
+    depends_on:
+      - api
+    networks:
+      - smartcrop-net
+
+  simulator:
+    build: ./simulator
+    container_name: iot-simulator
+    depends_on:
+      - api
+    networks:
+      - smartcrop-net
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./simulator:/app
+
+volumes:
+  grafana-data:
+
+networks:
+  smartcrop-net:
+    driver: bridge
+
